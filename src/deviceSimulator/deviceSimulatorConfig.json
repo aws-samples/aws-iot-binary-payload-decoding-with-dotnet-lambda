@@ -1,0 +1,8 @@
+{
+  "Endpoint": "<AWS IoT Core 'iot:Data-ATS' endpoint>",
+  "EncodedDataTopic" :"encodedData",
+  "ClientId": "mySimulationThing",
+  "ClientCertificatePath": "./Secrets/certificate.crt",
+  "ClientPrivateKeyPath": "./Secrets/private.key",
+  "CaCertificatePath": "./Secrets/AmazonRootCA1.pem"
+}
