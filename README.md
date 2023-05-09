@@ -26,6 +26,7 @@ There is also another CDK Stack (within the same CDK Application) to deploy the 
 -	AWS CLI & CDK
 -	AWS IAM User with enough privileges to interact with AWS IoT Core and create the CDK stack. 
 -	.NET 6.0 SDK (to run the simulator)
+-	Docker (it's used by the CDK app to build the Lambda)
 
 # Getting started
 
@@ -33,7 +34,7 @@ Let's start cloning the repo:
 
 ```bash
 #to be changed with the final repo
-git clone https://gitlab.aws.dev/algorni/aws-iot-binary-payload-decoding-with-dotnet-lambda.git
+git clone https://github.com/aws-samples/aws-iot-binary-payload-decoding-with-dotnet-lambda.git
 cd aws-iot-binary-payload-decoding-with-dotnet-lambda
 ```
 
