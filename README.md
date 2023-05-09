@@ -33,21 +33,19 @@ There is also another CDK Stack (within the same CDK Application) to deploy the 
 Let's start cloning the repo:
 
 ```bash
-#to be changed with the final repo
 git clone https://github.com/aws-samples/aws-iot-binary-payload-decoding-with-dotnet-lambda.git
 cd aws-iot-binary-payload-decoding-with-dotnet-lambda
 ```
 
 Then to deploy and execute this simple example you need first to create and activate a Certificate for the simulation which send a custom binary payload to AWS IoT Core.
+The following command is going to create a certifiate, set as Active and return back the ARN of that certificate and save into a variable to be used later in the CDK as context parameter
 
 ```bash
 cd src/deviceSimulator
 mkdir Secrets
 cd Secrets
 
-# The following command is going to create a certifiate, set as Active and return back the ARN of that certificate and save into a variable to be used later in the CDK as context parameter
 certArn=$(aws iot create-keys-and-certificate --set-as-active --certificate-pem-outfile certificate.crt --public-key-outfile public.key --private-key-outfile private.key --query certificateArn --output text)
-
 ```
 
 If the command above is executed properly you now should have a certificate created in AWS IoT Core, set as Active and a variable in your console with the ARN.
@@ -57,10 +55,9 @@ You can simply check in this way:
 
 ```bash
 echo $certArn
-
-# You should see the Certificate ARN created above as an output of this command.
-# Something like: arn:aws:iot:<region>:<account>:cert/<the id of your cert>
 ```
+You should see the Certificate ARN created above as an output of this command. 
+Something like: arn:aws:iot:<region>:<account>:cert/<the id of your cert>
 
 In order to run the device simulator you need also to download the [Amazon Root CA](https://docs.aws.amazon.com/iot/latest/developerguide/iot-dc-prepare-device-test.html#iot-dc-prepare-device-test-step3).
 
@@ -75,8 +72,8 @@ The next step is deploy the CDK stack.  This is going to create the AWS IoT Core
 _NOTE: if you want you can replace the thingName and the encoded and decoded topic used by the simulator and by the Rule to republish the decoded values_
 
 ```bash
-# Go back to the root of the repo then execute the following commands:
-
+cd ..
+cd ..
 cd infra
 cdk deploy --all --context thingName=mySimulationThing --context thingCertArn=$certArn --context encodedDataTopic=encodedData --context decodedDataTopic=decodedData
 ```
