@@ -41,7 +41,7 @@ cd aws-iot-binary-payload-decoding-with-dotnet-lambda
 Then to deploy and execute this simple example you need first to create and activate a Certificate for the simulation which send a custom binary payload to AWS IoT Core.
 
 ```bash
-cd source/deviceSimulator
+cd src/deviceSimulator
 mkdir Secrets
 cd Secrets
 
