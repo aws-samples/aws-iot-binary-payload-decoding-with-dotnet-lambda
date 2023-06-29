@@ -57,6 +57,7 @@ namespace deviceSimulator
                 // Disabling packet fragmentation is very important!  
                 .WithoutPacketFragmentation()
                 .WithProtocolVersion(MQTTnet.Formatter.MqttProtocolVersion.V500)
+                .WithKeepAlivePeriod(TimeSpan.FromSeconds(60))
                 .Build();
 
             var mqttFactory = new MqttFactory();            
