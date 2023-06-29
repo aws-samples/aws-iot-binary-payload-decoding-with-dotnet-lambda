@@ -28,7 +28,19 @@ namespace deviceSimulator
             string clientCertificateStr = File.ReadAllText(deviceSimulatorConfig.ClientCertificatePath);
             string clientPrivateKeyStr = File.ReadAllText(deviceSimulatorConfig.ClientPrivateKeyPath);
 
-            var clientCertWithKey = X509Certificate2.CreateFromPem(clientCertificateStr, clientPrivateKeyStr);
+            X509Certificate2 clientCertWithKey = null;
+
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                Console.WriteLine("Windows");
+                clientCertWithKey = new X509Certificate2( 
+                    X509Certificate2.CreateFromPem(clientCertificateStr, clientPrivateKeyStr).Export(X509ContentType.Pkcs12) );
+            }
+            else if (Environment.OSVersion.Platform == PlatformID.Unix)
+            {
+                Console.WriteLine("Linux");
+                clientCertWithKey = X509Certificate2.CreateFromPem(clientCertificateStr, clientPrivateKeyStr);
+            } 
 
             string caCertificateStr = File.ReadAllText(deviceSimulatorConfig.CaCertificatePath);
             var caCertificate = X509Certificate2.CreateFromPem(caCertificateStr);
